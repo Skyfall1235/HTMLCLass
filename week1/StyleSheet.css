@@ -1,0 +1,26 @@
+h1, h3, p
+    {
+      text-align: center;  /* Center headings */
+    }
+
+    .centered 
+    {  /* Class for centering content */
+      text-align: center;
+      margin-inline: auto;
+    }
+
+    section 
+    {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    img 
+    {
+      max-width: 100%; /* Ensure the image doesn't exceed its container */
+    }
+
+    body
+    {
+        background-color: darkgray;
+    }
