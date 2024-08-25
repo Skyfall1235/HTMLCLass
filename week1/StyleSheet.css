@@ -1,4 +1,4 @@
-h1, h3, p
+h1, h3
     {
       text-align: center;  /* Center headings */
     }
@@ -17,10 +17,18 @@ h1, h3, p
 
     img 
     {
-      max-width: 100%; /* Ensure the image doesn't exceed its container */
+      max-width: fit-content; 
+      max-height: fit-content;
     }
 
     body
     {
         background-color: darkgray;
+    }
+    p
+    {
+      padding: 50px;
+      
+      text-align: left;
+      background-color: rgb(100, 100, 100);
     }
