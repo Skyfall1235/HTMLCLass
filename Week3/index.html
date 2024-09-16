@@ -1,11 +1,26 @@
+<!--Wyatt murray, SGD html class with ven lewis -->
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8" />
-  <title></title>
+    <title>Countdown Timer and Palindrome Checker</title>
+    <script src="Trivia.js"></script> 
 </head>
 <body>
+    <h1>Wyatts Counter and palindrome checker / trivia!</h1>
+    <h2>Countdown Timer</h1>
 
+    <p>Enter a positive number to start the countdown</p>
+    <input type="number" id="countdownInput">
+    <button onclick="startCountdown()">Start Countdown</button>
+
+    <div id="countdownDisplay"></div>
+
+    <h2>Palindrome Checker</h1>
+
+    <p>Enter a word or sentence to check if it's a palindrome</p>
+    <input type="text" id="palindromeInput">
+    <button onclick="checkPalindrome()">Check</button>
+
+    <div id="palindromeResult"></div>
 </body>
 </html>
-
