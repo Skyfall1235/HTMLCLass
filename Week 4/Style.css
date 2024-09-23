@@ -1,0 +1,14 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1, h2 {
+    margin: 20px 0;
+}
+
+#player1, #player2 {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+}
