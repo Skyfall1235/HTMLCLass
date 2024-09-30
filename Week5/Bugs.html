@@ -1,16 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8" />
-
-</head>
+<title>Buggy Web Page</title>
+<head>
 <body>
+  <style>
+    p {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        color: #333;
+        line-height: 1.5;
+        margin: 10px 0;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-left: 4px solid #007BFF;
+        border-radius: 5px;
+    }
+    </style>
+<button onclick="calculate()">Calculate</button>
+<p id="result"></p>
 
-
-    
 <script>
+function calculate() 
+{
+  var num1 = document.getElementById("num1").value;
+  var num2 = document.getElementById("num2").value; 
 
-
+  var result = num1 + num2;
+  document.getElementById("Result").innerHTML = result;
+}
 </script>
+<input type="text" id="num1">
+<input type="text" id="num2">
 </body>
 </html>
