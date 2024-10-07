@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <link rel="stylesheet" href="style.css">
+    <title>Wyatts Math Quiz</title>
+    </head>
+    <body>
+        <div id="main">
+            <h1> Math Quiz </h1>
+            <p> 
+                Select one of the operations by clicking on the add, subtract, multiply, or divide button. a problem will be generated. 
+                Enter your solution into the text box, and then click solve when you are ready to check your answer.
+            </p>
+            <div id="buttons">
+                <button id="add" onclick="generateAddition()">  +  </button>
+                <button id="subtract" onclick="generateSubtraction()">  -  </button>
+                <button id="multiply" onclick="generateMultiply()">  X  </button>
+                <button id="divide" onclick="generateDivision()">  /  </button>
+            </div>
+            <br>
+            <input type="text" id="input" name="input"> <button id="submit" onclick="checkInput()">Solve</button> 
+            <br>
+            <p id="responses">Response Here</p>
+        </div>
+        <script src ="mathQuizMurray.js"></script>
+    </body>
+</html>

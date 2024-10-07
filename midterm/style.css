@@ -1,0 +1,16 @@
+#main
+{
+    margin: auto;
+    padding: 15px;
+    border: 5px solid black;
+    width: 60%;text-align: center;
+}
+#buttons
+{
+    font-size: large;
+}
+body
+{
+    background-color: mediumaquamarine;
+    padding: 30px;
+}
