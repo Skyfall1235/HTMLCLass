@@ -33,8 +33,8 @@ class GameScene extends Phaser.Scene{
     
         // Collisions
         this.physics.add.collider(this.bullets, this.enemies, this.destroyEnemy, null, this);
-        this.physics.add.overlap(this.enemies, this.ship, this.shipHit, null, this);
-        this.physics.add.overlap(this.ship, this.powerups, this.collectPowerup, null, this);
+    this.physics.add.overlap(this.enemies, this.ship, this.shipHit, null, this);
+    this.physics.add.overlap(this.ship, this.powerups, this.collectPowerup, null, this);
     }
 
     update () {
@@ -46,9 +46,8 @@ class GameScene extends Phaser.Scene{
         }
     
         // Player shooting
-        if (this.cursors.space.isDown && this.time.now > this.nextFire) {
-            this.fireBullet();
-            this.nextFire = this.time.now + this.fireRate;
+        if (this.cursors.up.isDown) {
+            console.log("small issue");
         }
     
         // Enemy movement
@@ -76,12 +75,14 @@ class GameScene extends Phaser.Scene{
             bullet.setActive(true);
             bullet.setVisible(true);
             bullet.setVelocityY(-500);
+            bullet.angle = 180;
         }
     }
     
     spawnEnemy() {
         let x = Phaser.Math.Between(0, 800);
         let enemy = this.enemies.create(x, 0, 'enemy').setScale(1.5);
+        enemy.angle = 180;
         enemy.setVelocityY(10);
     }
     
