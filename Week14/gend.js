@@ -1,12 +1,3 @@
-var config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    scene: [GameScene]
-};
-
-var game = new Phaser.Game(config);
-
 class GameScene extends Phaser.Scene{
     constructor(){
         super('GameScene')
@@ -23,7 +14,7 @@ class GameScene extends Phaser.Scene{
 
     create () {
         // Player's spaceship
-        this.ship = this.add.image(400, 550, 'ship').setScale(1);
+        this.ship = this.add.image(400, 550, 'ship').setScale(2);
     
         // Player's bullets
         this.bullets = this.physics.add.group();
@@ -34,19 +25,11 @@ class GameScene extends Phaser.Scene{
     
         // Power-ups
         this.powerups = this.physics.add.group();
-        this.powerups.create(Phaser.Math.Between(0, 800), 0, 'shield');
-        this.powerups.create(Phaser.Math.Between(0, 800), 0, 'rapidFire');
+        this.powerups.create(Phaser.Math.Between(0, 800), 0, 'shield').setScale(0.03);
+        //this.powerups.create(Phaser.Math.Between(0, 800), 0, 'rapidFire');
     
         // Input
         this.cursors = this.input.keyboard.createCursorKeys();
-    
-        // Explosion animation
-        this.anims.create({
-            key: 'explode',
-            frames: this.anims.generateFrameNumbers('explosion'),
-            frameRate: 20,
-            repeat: 0
-        });
     
         // Collisions
         this.physics.add.collider(this.bullets, this.enemies, this.destroyEnemy, null, this);
@@ -57,9 +40,9 @@ class GameScene extends Phaser.Scene{
     update () {
         // Player movement
         if (this.cursors.left.isDown) {
-            this.ship.x -= 50;
+            this.ship.x -= 5;
         } else if (this.cursors.right.isDown) {
-            this.ship.x += 50;
+            this.ship.x += 5;
         }
     
         // Player shooting
@@ -79,7 +62,7 @@ class GameScene extends Phaser.Scene{
         // Power-up movement
         this.physics.world.wrap(this.powerups, 0, 0);
         this.powerups.children.iterate(powerup => {
-            powerup.y += 100;
+            powerup.y += 1;
             if (powerup.y > 600) {
                 powerup.y = 0;
                 powerup.x = Phaser.Math.Between(0, 800);
@@ -98,8 +81,8 @@ class GameScene extends Phaser.Scene{
     
     spawnEnemy() {
         let x = Phaser.Math.Between(0, 800);
-        let enemy = this.enemies.create(x, 0, 'enemy');
-        enemy.setVelocityY(100);
+        let enemy = this.enemies.create(x, 0, 'enemy').setScale(1.5);
+        enemy.setVelocityY(10);
     }
     
     destroyEnemy(bullet, enemy) {
@@ -133,3 +116,42 @@ class GameScene extends Phaser.Scene{
     }
 }
 
+class TitleScene extends Phaser.Scene {
+    constructor() {
+        super('TitleScene');
+    }
+
+    preload () {
+        this.load.image('ship', 'Assets/Ship_1.png');
+    }
+
+    create() {
+        // Black background
+        this.add.rectangle(400, 300, 800, 600, 0x000000);
+
+        // Ship image
+        this.add.image(400, 200, 'ship').setScale(3);
+
+        // Title text
+        this.add.text(400, 100, 'Space Shooter', { fontSize: '35px', fill: '#fff', align: 'center' }).setOrigin(0.5);
+
+        // Start button
+        this.startButton = this.add.text(400, 400, 'Start Game', { fontSize: '30px', fill: '#fff', align: 'center' }).setOrigin(0.5);
+        this.startButton.setInteractive();
+        this.startButton.on('pointerdown', () => {
+            this.scene.start('GameScene'); // Replace 'GameScene' with your actual game scene name
+        });
+    }
+}
+
+var config = {
+    type: Phaser.AUTO,
+    width: 800,
+    height: 600,
+    physics: {
+        default: 'arcade' // Use 'arcade' for Arcade Physics
+    },
+    scene: [TitleScene, GameScene]
+};
+
+var game = new Phaser.Game(config);
