@@ -1,3 +1,14 @@
+//TO DO
+// - add sounds
+// - create score
+// - get collisions working
+// - get projectiles firing
+// - create a bounds for the players movement
+// - game over screen with high score (kinda done)
+
+let highScore = 0;
+
+
 class GameScene extends Phaser.Scene{
     constructor(){
         super('GameScene')
@@ -89,6 +100,7 @@ class GameScene extends Phaser.Scene{
     destroyEnemy(bullet, enemy) {
         bullet.destroy();
         enemy.destroy();
+        highScore += 10;
         var explosion = this.add.sprite(enemy.x, enemy.y, 'explosion').play('explode');
         explosion.on('animationcomplete', () => { explosion.destroy(); });
     }
@@ -145,6 +157,29 @@ class TitleScene extends Phaser.Scene {
     }
 }
 
+class GameOverScene extends Phaser.Scene {
+    constructor() {
+        super('GameOverScene');
+    }
+
+    create() {
+        // Add game over text
+        this.add.text(400, 200, 'Game Over', { fontSize: '32px', fill: '#fff', align: 'center' }).setOrigin(0.5);
+
+        // Add high score text
+        let highScoreText = 'High Score: ' + highScore;
+        this.add.text(400, 300, highScoreText, { fontSize: '24px', fill: '#fff', align: 'center' }).setOrigin(0.5);
+
+        // Add a restart button
+        this.restartButton = this.add.text(400, 400, 'Restart', { fontSize: '24px', fill: '#fff', align: 'center' }).setOrigin(0.5);
+        this.restartButton.setInteractive();
+        this.restartButton.on('pointerdown', () => {
+            highScore = 0;
+            this.scene.start('GameScene'); // Replace 'GameScene' with your actual game scene name
+        });
+    }
+}
+
 var config = {
     type: Phaser.AUTO,
     width: 800,
@@ -152,7 +187,7 @@ var config = {
     physics: {
         default: 'arcade' // Use 'arcade' for Arcade Physics
     },
-    scene: [TitleScene, GameScene]
+    scene: [TitleScene, GameScene, GameOverScene]
 };
 
 var game = new Phaser.Game(config);
